@@ -13,16 +13,12 @@ stop:
 	stop-dfs.sh
 	jps
 
-runTest:
-	# add a scipt here for running a smaller sample dataset
-	# ./runTest.sh
-
 cleanData:
-	clean_data.sh
+	shell_scripts/clean_data.sh
 
 resampleData:
-	resample_data.sh
+	shell_scripts/resample_data.sh
 
 testData:
-	make_test_datatset.sh
+	shell_scripts/make_test_datatset.sh
 
