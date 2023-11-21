@@ -12,7 +12,4 @@ if __name__ == "__main__":
     input_data = spark.read.csv(input_file, header=True, inferSchema=True)
 
     smaller_sample_df = input_data.sample(fraction = 0.1)
-
-    
-
     smaller_sample_df.coalesce(1).write.csv(output_file, header=True, compression = "gzip")
