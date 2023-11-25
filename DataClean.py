@@ -1,5 +1,6 @@
 import sys
 from pyspark.sql import SparkSession
+from pyspark.sql.functions import col
 
 if __name__ == "__main__":
 
@@ -18,12 +19,20 @@ if __name__ == "__main__":
             input_data = input_data.drop(col[0])
             print(col[0])
 
-    input_data.printSchema()
-
     input_data = input_data.where(input_data.language == 'english')
 
     input_data.na.drop()
 
-    input_data.write.csv(output_file, header=True)
+    #drop all colum except the name of the game, the review, and recommended status
 
+    cols_to_drop = ("_c0", "app_id","language", "timestamp_created", "review_id", 
+                    "timestamp_updated", "votes_helpful", "votes_funny", "weighted_vote_score", 
+                    "comment_count", "received_for_free", "written_during_early_access", "steam_purchase")
     
+    cleaned_data = input_data.drop(*cols_to_drop)
+    cleaned_data.show(10)
+    cleaned_data.printSchema()
+
+    cleaned_data.write.csv(output_file, header=True)
+
+    spark.stop()

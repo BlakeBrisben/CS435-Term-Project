@@ -13,3 +13,5 @@ if __name__ == "__main__":
 
     smaller_sample_df = input_data.sample(fraction = 0.1)
     smaller_sample_df.coalesce(1).write.csv(output_file, header=True, compression = "gzip")
+
+    spark.stop()
