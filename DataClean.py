@@ -24,7 +24,6 @@ if __name__ == "__main__":
     input_data.na.drop()
 
     #drop all colum except the name of the game, the review, and recommended status
-
     cols_to_drop = ("_c0", "app_id","language", "timestamp_created", "review_id", 
                     "timestamp_updated", "votes_helpful", "votes_funny", "weighted_vote_score", 
                     "comment_count", "received_for_free", "written_during_early_access", "steam_purchase")
