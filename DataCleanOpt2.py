@@ -12,13 +12,6 @@ if __name__ == "__main__":
 
     input_data = spark.read.csv(input_file, header=True, inferSchema=True)
 
-    input_data.printSchema()
-
-    # for col in input_data.dtypes:
-    #     if 'author' in col[0]:
-    #         input_data = input_data.drop(col[0])
-    #         print(col[0])
-
     input_data = input_data.where(input_data.language == 'english')
 
     output_data = input_data.select("app_name", "review", "recommended")

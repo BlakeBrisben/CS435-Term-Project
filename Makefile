@@ -27,7 +27,3 @@ run:
 	make resampleData
 	make testData
 
-# removes all files in the hadoop output folder for the term project
-deleteOutput:
-	hadoop fs -rm -r /TP/output/* | echo "**Output folder is already empty!**"
-
