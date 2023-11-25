@@ -16,6 +16,8 @@ if __name__ == "__main__":
 
     output_data = input_data.select("app_name", "review", "recommended")
 
+    output_data = output_data.filter(col("review").rlike("\\w+"))
+
     output_data.na.drop()
 
     output_data.write.csv(output_file, header=True)

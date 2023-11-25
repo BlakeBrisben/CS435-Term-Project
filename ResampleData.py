@@ -27,15 +27,6 @@ if __name__ == "__main__":
 
     combined_df = major_class_sample.unionAll(minor_class_df)
 
-    # new_major_class_df = combined_df.filter(combined_df["recommended"]  == "True")
-    # new_minor_class_df = combined_df.filter(combined_df["recommended"]  == "False")
-
-
-    # ratio = int(new_major_class_df.count()/new_minor_class_df.count())
-    # print("new ratio: {}".format(ratio))
-    # count = combined_df.count()
-    # print("combined df count: {}".format(count))
-
     combined_df.write.csv(output_file, header=True)
 
     spark.stop()
