@@ -22,3 +22,8 @@ resampleData:
 testData:
 	shell_scripts/make_test_datatset.sh
 
+run:
+	make cleanData
+	make resampleData
+	make testData
+
