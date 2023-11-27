@@ -36,9 +36,9 @@ if __name__ == "__main__":
 
     df = input_data
 
-    document_assembler = DocumentAssembler() \
-        .setInputCol("review") \
-        .setOutputCol("document")
+    document_assembler = DocumentAssembler()
+    document_assembler.setInputCol("review")
+    document_assembler.setOutputCol("document")
 
     tokenizer = Tokenizer() \
         .setInputCols(["document"]) \
@@ -141,8 +141,6 @@ if __name__ == "__main__":
     preds_df = predictions.select('app_name','review',"label", "prediction").toPandas()
 
     print (classification_report(preds_df['label'], preds_df['prediction']))
-
-    spark.stop()
 
     predictions.write.csv(output_file, header=True)
 
