@@ -69,7 +69,7 @@ if __name__ == "__main__":
       predictions = rf_model.transform(test)
       return predictions
 
-    df_pred = RandomForest(train, test)
+    # df_pred = RandomForest(train, test)
 
     def logisticRegression(train, test):
         lr = LogisticRegression(featuresCol='features',
