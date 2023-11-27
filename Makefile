@@ -22,6 +22,9 @@ resampleData:
 testData:
 	shell_scripts/make_test_datatset.sh
 
+classifyData:
+	shell_scripts/runClassifier.sh
+
 run:
 	make cleanData
 	make resampleData

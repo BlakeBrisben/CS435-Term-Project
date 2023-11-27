@@ -1,6 +1,8 @@
 import sys
 from pyspark.sql import SparkSession
 
+from pyspark.sql.functions import when
+
 if __name__ == "__main__":
 
     spark = SparkSession.builder.appName('ResampleData').getOrCreate()
@@ -26,6 +28,12 @@ if __name__ == "__main__":
     major_class_sample = major_class_df.sample(fraction = 1/ratio)
 
     combined_df = major_class_sample.unionAll(minor_class_df)
+
+    combined_df = combined_df.withColumn("recommended", when(combined_df.recommended==True, 1).otherwise(0))
+
+    combined_df = combined_df.withColumnRenamed("recommended", "label")
+
+    combined_df.show(4)
 
     combined_df.write.csv(output_file, header=True)
 

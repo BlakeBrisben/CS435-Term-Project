@@ -18,7 +18,9 @@ if __name__ == "__main__":
 
     output_data = output_data.filter(col("review").rlike("\\w+"))
 
-    output_data.na.drop()
+    output_data = output_data.dropna()
+
+    # need to add code to set all values to lower
 
     output_data.write.csv(output_file, header=True)
 
