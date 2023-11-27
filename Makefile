@@ -23,7 +23,7 @@ testData:
 	shell_scripts/make_test_datatset.sh
 
 classifyData:
-	shell_scripts/runClassifier.sh
+	shell_scripts/run_classifier.sh
 
 run:
 	make cleanData
