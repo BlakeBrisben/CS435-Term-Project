@@ -23,12 +23,14 @@ testData:
 	shell_scripts/make_test_datatset.sh
 
 classifyData:
-	shell_scripts/run_classifier.sh >> ./1_stats/classifier_stats.md
+	make logReg
+	make rForest
 
 logReg:
 	shell_scripts/run_logistic_regressionr.sh
 
 rForest:
+	touch ./1_stats/random_f_stats.md
 	shell_scripts/run_random_forest.sh
 
 run:

@@ -56,6 +56,8 @@ if __name__ == "__main__":
     df.show(10)
 
     def randomForestCrossValidation(df, folds = 5):
+       
+       (train, test) = df.randomSplit([0.80, 0.20])
 
        rf = RandomForestClassifier(labelCol='label',
                                 featuresCol='features')
@@ -66,13 +68,21 @@ if __name__ == "__main__":
                .addGrid(rf.numTrees, [10, 20, 50]) \
                .addGrid(rf.impurity, ["gini", "entropy"]) \
                .build()
+       
        evaluator = BinaryClassificationEvaluator(labelCol = "label")
+       
        cross_validator = CrossValidator(estimator = pipeline, 
                                         evaluator = evaluator, 
                                         estimatorParamMaps = grid,
                                          numFolds = folds)
-       cv_model = cross_validator.fit(df)
-       predictions = cv_model.transform(df)
+    #    cv_model = cross_validator.fit(df)
+    #    predictions = cv_model.transform(df)
+    #    predictions.select("label", "probability", "prediction").show(10)
+    #    accuracy = evaluator.evaluate(predictions)
+
+       cv_model = cross_validator.fit(train)
+       best_model = cv_model.bestModel.stages[0]
+       predictions = best_model.transform(test)
        predictions.select("label", "probability", "prediction").show(10)
        accuracy = evaluator.evaluate(predictions)
 
@@ -83,11 +93,11 @@ if __name__ == "__main__":
        predictions = predictions.select('app_name',"label", "prediction")
        print (classification_report(preds_df['label'], preds_df['prediction']))
 
-       best_model = cv_model.bestModel.stages[0]
+    #    best_model = cv_model.bestModel.stages[0]
 
-       print("Best maxBins: " + str(best_model.maxBins))
-       print("Best numTrees: " + str(best_model.numTrees))
-       print("Best impurity: " + str(best_model.impurity))
+       print("Best maxBins: " + str(best_model.getMaxBins()))
+    #    print("Best numTrees: " + str(best_model.getNumTrees()))
+    #    print("Best impurity: " + str(best_model.getImpurity()))
 
        return predictions
     
