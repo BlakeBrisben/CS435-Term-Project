@@ -6,6 +6,7 @@
 !README.md
 !shell_scripts
 !test_data.csv.gz
+!stats.md
 
 # add your own custom shell scripts to the shell_scripts directoryl
 **./shell_scripts/*

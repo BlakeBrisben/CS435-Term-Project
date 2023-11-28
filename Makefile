@@ -22,8 +22,15 @@ resampleData:
 testData:
 	shell_scripts/make_test_datatset.sh
 
-run:
-	make cleanData
-	make resampleData
-	make testData
+classifyData:
+	make logReg
+	make rForest
 
+logReg:
+	shell_scripts/run_logistic_regressionr.sh
+
+rForest:
+	shell_scripts/run_random_forest.sh
+
+run:
+	shell_scripts/run.sh
