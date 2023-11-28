@@ -30,7 +30,6 @@ logReg:
 	shell_scripts/run_logistic_regressionr.sh
 
 rForest:
-	touch ./1_stats/random_f_stats.md
 	shell_scripts/run_random_forest.sh
 
 run:
