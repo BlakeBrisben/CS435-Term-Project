@@ -23,10 +23,13 @@ testData:
 	shell_scripts/make_test_datatset.sh
 
 classifyData:
-	shell_scripts/run_classifier.sh
+	shell_scripts/run_classifier.sh >> ./1_stats/classifier_stats.md
+
+logReg:
+	shell_scripts/run_logistic_regressionr.sh
+
+rForest:
+	shell_scripts/run_random_forest.sh
 
 run:
-	make cleanData
-	make resampleData
-	make testData
-
+	shell_scripts/run.sh
